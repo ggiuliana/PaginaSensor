@@ -1,0 +1,51 @@
+body {
+    font-family: 'Trebuchet MS';
+    background-color: rgb(36, 36, 36);
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: rgb(18, 18, 18);
+    border-radius: 5px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.estado {
+    padding: 50px;
+}
+
+h1 {
+    color: #fff;
+    font-size: 35px;
+}
+
+p{
+    color: #fff;
+}
+header {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 40;
+}
+
+.navbar ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #fff;
+}
