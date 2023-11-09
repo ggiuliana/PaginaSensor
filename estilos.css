@@ -55,3 +55,7 @@ header {
 .navbar ul li a:hover {
     text-decoration: underline;
 }
+
+a{
+    color: lightblue
+}
