@@ -35,9 +35,19 @@ client.on('error', (error) => {
 })
 
 client.on('message', (topic, message) => {
-  console.log('receive message：', topic, message.toString())
+  console.log('receive message:', topic, message.toString())
   if(message.toString() == "aprobado"){
     console.log("aprobeti")
+    document.getElementById('titulo_estado').textContent = 'Acceso concedido';
+    document.getElementById('acceso_estado').textContent = 'Datos recibidos';
+    document.getElementById('titulo_estado').style.color = 'green';
+    document.getElementById('acceso_estado').style.color = 'green';
+  }
+  else if(message.toString() == "denegado"){
+    document.getElementById('titulo_estado').textContent = 'Acceso denegado';
+    document.getElementById('acceso_estado').textContent = 'Datos recibidos';
+    document.getElementById('titulo_estado').style.color = 'red';
+    document.getElementById('acceso_estado').style.color = 'red';
   }
 
 })

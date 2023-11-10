@@ -22,26 +22,9 @@
         <div class="estado">
             <h1 id="titulo_estado">Estado de Acceso</h1>
             <div id="acceso_estado">Esperando datos del sensor RFID...</div>
-            <button id="btnAccesoConcedido">Acceso Concedido</button>
-            <button id="btnAccesoDenegado">Acceso Denegado</button>
         </div>
     </div>
     
-    <script>
-        document.getElementById('btnAccesoConcedido').addEventListener('click', function() {
-            document.getElementById('titulo_estado').textContent = 'Acceso concedido';
-            document.getElementById('acceso_estado').textContent = 'Datos recibidos';
-            document.getElementById('titulo_estado').style.color = 'green';
-            document.getElementById('acceso_estado').style.color = 'green';
-        });
-
-        document.getElementById('btnAccesoDenegado').addEventListener('click', function() {
-            document.getElementById('titulo_estado').textContent = 'Acceso denegado';
-            document.getElementById('acceso_estado').textContent = 'Datos recibidos';
-            document.getElementById('titulo_estado').style.color = 'red';
-            document.getElementById('acceso_estado').style.color = 'red';
-        });
-    </script>
 </body>
 </html>
 
