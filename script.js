@@ -24,6 +24,7 @@ const client = mqtt.connect(connectUrl, options)
 client.on("connect", () => {
   console.log("Conectado");
   client.subscribe("rfid");
+  client.subscribe("dat");
 });
 
 client.on('reconnect', (error) => {
@@ -36,18 +37,29 @@ client.on('error', (error) => {
 
 client.on('message', (topic, message) => {
   console.log('receive message:', topic, message.toString())
-  if(message.toString() == "aprobado"){
-    console.log("aprobeti")
-    document.getElementById('titulo_estado').textContent = 'Acceso concedido';
-    document.getElementById('acceso_estado').textContent = 'Datos recibidos';
-    document.getElementById('titulo_estado').style.color = 'green';
-    document.getElementById('acceso_estado').style.color = 'green';
+  if(topic == "rfid"){
+    if(message.toString() == "aprobado"){
+      aprobado = true;
+      console.log("aprobeti")
+      document.getElementById('titulo_estado').textContent = 'Acceso concedido';
+      document.getElementById('acceso_estado').textContent = 'Esperando datos';
+      document.getElementById('titulo_estado').style.color = 'green';
+      document.getElementById('acceso_estado').style.color = 'white';
+    }
+    else if(message.toString() == "denegado"){
+      aprobado = false;
+      document.getElementById('titulo_estado').textContent = 'Acceso denegado';
+      document.getElementById('acceso_estado').textContent = 'No se pueden recibir datos';
+      document.getElementById('titulo_estado').style.color = 'red';
+      document.getElementById('acceso_estado').style.color = 'red';
+    }  
   }
-  else if(message.toString() == "denegado"){
-    document.getElementById('titulo_estado').textContent = 'Acceso denegado';
-    document.getElementById('acceso_estado').textContent = 'Datos recibidos';
-    document.getElementById('titulo_estado').style.color = 'red';
-    document.getElementById('acceso_estado').style.color = 'red';
+  else{
+    if(aprobado){
+      console.log(message.toString)
+      document.getElementById('acceso_estado').textContent = message.toString(); 
+      document.getElementById('acceso_estado').style.color = 'green';
+    }
   }
-
+  
 })
