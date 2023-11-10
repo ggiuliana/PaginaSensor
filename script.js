@@ -1,5 +1,5 @@
-// const mqtt = require('mqtt')
-import mqtt from 'mqtt'
+
+console.log("NARD");
 
 // connection option
 const options = {
@@ -7,8 +7,8 @@ const options = {
       connectTimeout: 4000, // Timeout period
       // Authentication information
       clientId: 'emqx_test',
-      username: 'emqx_test',
-      password: 'emqx_test',
+      username: '',
+      password: '',
 }
 
 // Connect string, and specify the connection method by the protocol
@@ -18,8 +18,13 @@ const options = {
 // mqtts Encrypted TCP connection
 // wxs WeChat applet connection
 // alis Alipay applet connection
-const connectUrl = 'ws://10.0.3.201:1883'
+const connectUrl = 'mqtt://10.0.3.201:8083/mqtt'
 const client = mqtt.connect(connectUrl, options)
+
+client.on("connect", () => {
+  console.log("Conectado");
+  client.subscribe("rfid");
+});
 
 client.on('reconnect', (error) => {
     console.log('reconnecting:', error)
@@ -31,4 +36,8 @@ client.on('error', (error) => {
 
 client.on('message', (topic, message) => {
   console.log('receive message：', topic, message.toString())
+  if(message.toString() == "aprobado"){
+    console.log("aprobeti")
+  }
+
 })
